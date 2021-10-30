@@ -25,6 +25,12 @@ public class Movement2D : MonoBehaviour
     }
     
     
+    public Vector2 Move(Vector2 dir, bool normalize)
+    {
+        myBody.velocity = normalize ? dir.normalized * speed : dir * speed;
+
+        return myBody.velocity * 10 * Time.fixedDeltaTime;
+    }
     public Vector2 MoveTo(Vector2 a, Vector2 b, float t)
     {
         Vector2 posToGoTo = Vector2.Lerp(a, b, t);

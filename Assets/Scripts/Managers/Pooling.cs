@@ -29,6 +29,7 @@ public class Pooling : MonoBehaviour
     public static Pooling Instance => instance;
     private void Awake()
     {
+        instance = this;
         foreach (var pool in listOfPools)
         {
             Queue<GameObject> listOfObjs = new Queue<GameObject>();
@@ -42,11 +43,9 @@ public class Pooling : MonoBehaviour
             
             poolingDictionaty.Add(pool.objTag,listOfObjs);
         }
+        
+       
 
-        if (instance != null)
-        {
-            instance = this;
-        }
     }
 
     public GameObject SpawnFromPool(string poolTag,Vector3 pos, Quaternion rot)

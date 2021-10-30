@@ -15,10 +15,11 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(float currentHp)
     {
         healthBar.fillAmount = currentHp;
+        SetHealthColor(healthBar.fillAmount);
     }
     //Set the HealthBar Color based on the value of the current Health
-    public void SetHealthColor(float currentHp)
+    public void SetHealthColor(float hpFill)
     {
-        healthBar.color = Color.Lerp(emptyHealthColor, healthFullColor, currentHp);
+        healthBar.color = Color.Lerp(emptyHealthColor, healthFullColor, hpFill);
     }
 }
