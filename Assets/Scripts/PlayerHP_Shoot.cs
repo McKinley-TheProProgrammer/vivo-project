@@ -44,7 +44,8 @@ public class PlayerHP_Shoot : MonoBehaviour
         {
             startDeathCount = false;
             print("Enter");
-            StopCoroutine(PlayerDies(3));
+            //StopCoroutine(PlayerDies(3));
+            StopAllCoroutines();
         }
         if (healthAmount >= hpMax)
         {
@@ -55,7 +56,7 @@ public class PlayerHP_Shoot : MonoBehaviour
         float tHp = Mathf.InverseLerp(0f, hpMax, healthAmount);
         
         heathBar.SetHealth(tHp);
-        //heathBar.SetHealthColor(tHp);
+    
         playerDmg.MyHp = (int)healthAmount;
     }
 
@@ -75,6 +76,8 @@ public class PlayerHP_Shoot : MonoBehaviour
         healthAmount += 30;
     }
 
+    #region Death Implements
+
     private bool startDeathCount;
     private float deathCountdown = 3;
     void StartDeathCountDown()
@@ -89,7 +92,6 @@ public class PlayerHP_Shoot : MonoBehaviour
             {
                 deathCountdown = 0;
             }
-            //print((float)deathCountdown);
         }
         else
         {
@@ -98,25 +100,34 @@ public class PlayerHP_Shoot : MonoBehaviour
         }
         
     }
+    
     void CacheDeath()
     {
         GetComponent<Movement2D>().GetRigidBody2D().gravityScale = 2f;
         GetComponent<Collider2D>().enabled = false;
         GetComponent<PlayerMovement>().enabled = false;
     }
+    
     IEnumerator PlayerDies(float deathDelay)
     {
         startDeathCount = true;
         StartDeathCountDown();
-        yield return new WaitForSeconds(deathDelay);
+        //yield return new WaitForSeconds(deathDelay);
+        yield return new WaitUntil(() => deathCountdown <= 0);
         CacheDeath();
         yield return new WaitForSeconds(1f);
         StartCoroutine(GameManager.EndGame(1f));
     }
+
+    #endregion
+    
     
     void Update()
     {
+        float tHp = Mathf.InverseLerp(0f, hpMax, healthAmount);
+        heathBar.SetHealth(tHp);
         
+        //StartDeathCountDown();
         if (Input.GetKey(KeyCode.Space))
         {
             ShootHPLoss();
