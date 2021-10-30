@@ -42,6 +42,8 @@ public class PlayerHP_Shoot : MonoBehaviour
         }
         else
         {
+            startDeathCount = false;
+            print("Enter");
             StopCoroutine(PlayerDies(3));
         }
         if (healthAmount >= hpMax)
@@ -70,9 +72,32 @@ public class PlayerHP_Shoot : MonoBehaviour
 
     void BiteAttack()
     {
-        
+        healthAmount += 30;
     }
 
+    private bool startDeathCount;
+    private float deathCountdown = 3;
+    void StartDeathCountDown()
+    {
+        if (startDeathCount)
+        {
+            deathCountdownText.gameObject.SetActive(true);
+            deathCountdown -= Time.deltaTime;
+            int d = (int)deathCountdown;
+            deathCountdownText.text = d.ToString();
+            if (deathCountdown <= 0)
+            {
+                deathCountdown = 0;
+            }
+            //print((float)deathCountdown);
+        }
+        else
+        {
+            deathCountdown = 3;
+            deathCountdownText.gameObject.SetActive(false);
+        }
+        
+    }
     void CacheDeath()
     {
         GetComponent<Movement2D>().GetRigidBody2D().gravityScale = 2f;
@@ -81,6 +106,8 @@ public class PlayerHP_Shoot : MonoBehaviour
     }
     IEnumerator PlayerDies(float deathDelay)
     {
+        startDeathCount = true;
+        StartDeathCountDown();
         yield return new WaitForSeconds(deathDelay);
         CacheDeath();
         yield return new WaitForSeconds(1f);
@@ -89,10 +116,17 @@ public class PlayerHP_Shoot : MonoBehaviour
     
     void Update()
     {
+        
         if (Input.GetKey(KeyCode.Space))
         {
             ShootHPLoss();
             ShootBullets();
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            BiteAttack();
+        }
+        
     }
 }
