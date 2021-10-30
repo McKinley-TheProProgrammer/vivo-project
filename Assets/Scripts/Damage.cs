@@ -6,6 +6,8 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     [SerializeField] private int myHp;
+
+    public static float playerScore = 200;
     public int MyHp
     {
         get => myHp;
@@ -26,6 +28,12 @@ public class Damage : MonoBehaviour
     {
         whatTakesDamage -= dmgAmount;
     }
-    
-    
+
+    private void OnDisable()
+    {
+        if (this.CompareTag("Enemy"))
+        {
+            ScoreSystem.Instance.MultiplyScore(200);
+        }
+    }
 }

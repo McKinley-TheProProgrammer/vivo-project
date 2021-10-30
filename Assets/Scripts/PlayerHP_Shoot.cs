@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -18,6 +19,8 @@ public class PlayerHP_Shoot : MonoBehaviour
     private float fireAux;
 
     private Damage playerDmg;
+
+    [SerializeField] TextMeshProUGUI deathCountdownText;
     
     void Start()
     {
@@ -35,7 +38,11 @@ public class PlayerHP_Shoot : MonoBehaviour
         if (healthAmount <= 0)
         {
             healthAmount = 0;
-            StartCoroutine(PlayerDies(1f));
+            StartCoroutine(PlayerDies(3));
+        }
+        else
+        {
+            StopCoroutine(PlayerDies(3));
         }
         if (healthAmount >= hpMax)
         {
@@ -65,11 +72,19 @@ public class PlayerHP_Shoot : MonoBehaviour
     {
         
     }
-    IEnumerator PlayerDies(float delay)
+
+    void CacheDeath()
     {
-        this.gameObject.SetActive(false);
-        yield return new WaitForSeconds(delay);
-       
+        GetComponent<Movement2D>().GetRigidBody2D().gravityScale = 2f;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
+    }
+    IEnumerator PlayerDies(float deathDelay)
+    {
+        yield return new WaitForSeconds(deathDelay);
+        CacheDeath();
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(GameManager.EndGame(1f));
     }
     
     void Update()

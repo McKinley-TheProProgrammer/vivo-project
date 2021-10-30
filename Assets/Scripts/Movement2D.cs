@@ -9,7 +9,8 @@ public class Movement2D : MonoBehaviour
     [SerializeField] private float speed = 6.5f;
 
     private Rigidbody2D myBody;
-    
+
+    public Rigidbody2D GetRigidBody2D() => myBody;
     void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
