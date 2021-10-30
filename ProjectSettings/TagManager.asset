@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - PauseUI
+  - GameOverUI
   layers:
   - Default
   - TransparentFX

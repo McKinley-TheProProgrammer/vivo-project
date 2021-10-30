@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour , IPool
 {
-    [SerializeField] private GameObject pauseBox;
+    [SerializeField] private GameObject pauseBox, gameOverBox;
     
     [SerializeField] private float spawnUnitsCountDown;
     [SerializeField] private Transform spawnPointHierarchy;
@@ -43,6 +43,10 @@ public class GameManager : MonoBehaviour , IPool
         
     }
 
+    public IEnumerator EndGame(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+    }
     #region Pause Menu Options
 
     private bool isPaused;

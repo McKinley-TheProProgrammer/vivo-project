@@ -35,6 +35,7 @@ public class PlayerHP_Shoot : MonoBehaviour
         if (healthAmount <= 0)
         {
             healthAmount = 0;
+            StartCoroutine(PlayerDies(1f));
         }
         if (healthAmount >= hpMax)
         {
@@ -66,8 +67,9 @@ public class PlayerHP_Shoot : MonoBehaviour
     }
     IEnumerator PlayerDies(float delay)
     {
-        yield return new WaitForSeconds(delay);
         this.gameObject.SetActive(false);
+        yield return new WaitForSeconds(delay);
+       
     }
     
     void Update()
