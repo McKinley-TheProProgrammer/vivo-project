@@ -19,6 +19,10 @@ public class PlayerHP_Shoot : MonoBehaviour
     
     private float fireAux;
 
+    [SerializeField] private Transform bitePoint;
+    [SerializeField] private float biteRange = 1;
+    [SerializeField] private LayerMask whoIsGettingBit;
+
     private Damage playerDmg;
 
     [SerializeField] TextMeshProUGUI deathCountdownText;
@@ -74,7 +78,12 @@ public class PlayerHP_Shoot : MonoBehaviour
 
     void BiteAttack()
     {
-        healthAmount += 30;
+        bool checkLifeBat = Physics2D.Raycast(bitePoint.position, Vector2.up,biteRange, whoIsGettingBit);
+        if (checkLifeBat)
+        {
+            healthAmount += 30;
+            Debug.DrawLine(bitePoint.localPosition,Vector2.up, Color.green, 3f);
+        }
     }
 
     #region Death Implements
@@ -129,6 +138,12 @@ public class PlayerHP_Shoot : MonoBehaviour
         float tHp = Mathf.InverseLerp(0f, hpMax, healthAmount);
         heathBar.SetHealth(tHp);
         
+        if (healthAmount <= 0 && !playerDead)
+        {
+            StartCoroutine(PlayerDies(1));
+            playerDead = true;
+           
+        }
         StartDeathCountDown();
         if (Input.GetKey(KeyCode.Space))
         {
@@ -136,12 +151,7 @@ public class PlayerHP_Shoot : MonoBehaviour
             ShootBullets();
         }
         
-        if (healthAmount <= 0 && !playerDead)
-        {
-            StartCoroutine(PlayerDies(1));
-            playerDead = true;
-           
-        }
+       
 
         if (Input.GetKeyDown(KeyCode.F))
         {
