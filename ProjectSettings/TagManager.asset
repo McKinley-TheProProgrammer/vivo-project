@@ -9,6 +9,7 @@ TagManager:
   - PauseUI
   - GameOverUI
   - TransitionCanvas
+  - LifeBat
   layers:
   - Default
   - TransparentFX

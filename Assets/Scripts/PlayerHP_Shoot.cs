@@ -78,11 +78,17 @@ public class PlayerHP_Shoot : MonoBehaviour
 
     void BiteAttack()
     {
-        bool checkLifeBat = Physics2D.Raycast(bitePoint.position, Vector2.up,biteRange, whoIsGettingBit);
-        if (checkLifeBat)
+        //bool checkLifeBat = Physics2D.Raycast(bitePoint.position, Vector2.up,biteRange, whoIsGettingBit);
+        Collider2D checkLifeBat = Physics2D.OverlapCircle(bitePoint.position, biteRange, whoIsGettingBit);
+        //bool checkLifeBat = Physics2D.OverlapCircle(bitePoint.position, biteRange, whoIsGettingBit);
+        if (checkLifeBat.CompareTag("LifeBat"))
         {
             healthAmount += 30;
-            Debug.DrawLine(bitePoint.localPosition,Vector2.up, Color.green, 3f);
+            checkLifeBat.gameObject.SetActive(false);
+            GameObject vfxParticle =
+                Pooling.Instance.SpawnFromPool("LifeBatVFX", bitePoint.position, bitePoint.rotation);
+            
+            //vfxParticle.GetComponent<ParticleSystem>().Play();
         }
     }
 
