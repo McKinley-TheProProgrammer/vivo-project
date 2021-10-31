@@ -29,7 +29,8 @@ public class Damage : MonoBehaviour
             switch (this.gameObject.tag)
             {
                 case "Enemy":
-                    ScoreSystem.Instance.MultiplyScore(200);
+                    ScoreSystem.Instance.MultiplyScore((int)playerScore);
+                    //StartCoroutine(GameManager.Instance.Score(playerScore));
                     break;
                 case "Player":
                     
@@ -54,6 +55,7 @@ public class Damage : MonoBehaviour
         CacheDeath();
         yield return new WaitForSeconds(1f);
         StartCoroutine(GameManager.EndGame(1f));
+        StartCoroutine(ScoreSystem.Instance.Score(Damage.playerScore));
     }
     public void TakeDamage(int whatTakesDamage, int dmgAmount)
     {

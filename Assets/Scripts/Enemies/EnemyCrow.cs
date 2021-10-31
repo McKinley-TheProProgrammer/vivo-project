@@ -7,9 +7,12 @@ public class EnemyCrow : EnemyBaseBehaviour
 {
 
     [SerializeField] private float radius = 1f;
+    
+    //[SerializeField] private LayerMask playerLayer;
+    private GameObject player;
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player");
     }
 
     public override void DoAttack()

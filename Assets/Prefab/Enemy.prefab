@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c62e411898865a4cb7f44f8ccbdce54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementTypes: 0
+  m_MovementTypes: 1
   steerAmp: 0.78
 --- !u!114 &2676864618294299835
 MonoBehaviour:
@@ -177,3 +177,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc733082dfafe54093d269588e35d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmgAmount: 10
+  radius: 1

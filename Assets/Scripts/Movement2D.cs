@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement2D : MonoBehaviour
@@ -32,10 +33,11 @@ public class Movement2D : MonoBehaviour
 
         return myBody.velocity * 10 * Time.fixedDeltaTime;
     }
-    public Vector2 MoveTo(Vector2 a, Vector2 b, float t)
+    public void MoveTo(Vector2 a, float dur)
     {
-        Vector2 posToGoTo = Vector2.Lerp(a, b, t);
+        //Vector2 posToGoTo = Vector2.Lerp(a, b, t);
 
-        return posToGoTo;
+        Tween moveToTween = myBody.transform.DOBlendableMoveBy(a, dur);
+        
     }
 }

@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class LifeBat : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private float amp = .56f, frequency = 2;
+    private Movement2D movement2D;
+    
     void Start()
     {
-        
+        movement2D = GetComponent<Movement2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void MovingSideways()
     {
+        movement2D.Move(new Vector2(1f, Mathf.Cos(Time.time + frequency) * amp), true);
+    }
+
+    
+    void FixedUpdate()
+    {
+        MovingSideways();
         
     }
 }

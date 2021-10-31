@@ -72,7 +72,8 @@ public class PlayerHP_Shoot : MonoBehaviour
         {
             GameObject obj = Pooling.Instance.SpawnFromPool("BloodAmmo", transform.position, Quaternion.identity);
             fireRate = fireAux;
-            print(playerDmg.MyHp);
+            //print(playerDmg.MyHp);
+            AudioManager.Instance.Play("ShootSFX");
         }
     }
 
@@ -89,6 +90,10 @@ public class PlayerHP_Shoot : MonoBehaviour
                 Pooling.Instance.SpawnFromPool("LifeBatVFX", bitePoint.position, bitePoint.rotation);
             
             //vfxParticle.GetComponent<ParticleSystem>().Play();
+        }
+        else
+        {
+            healthAmount += 0;
         }
     }
 

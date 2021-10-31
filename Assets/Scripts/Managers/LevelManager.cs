@@ -47,7 +47,11 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
     }
-    
+
+    public void RestartLevel()
+    {
+        StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex));
+    }
     
     IEnumerator LoadScene(string sceneName)
     {

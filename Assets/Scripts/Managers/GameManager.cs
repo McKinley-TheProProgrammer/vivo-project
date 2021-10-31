@@ -23,7 +23,10 @@ public class GameManager : MonoBehaviour , IPool
     [SerializeField] private float spawnUnitsCountDown = 5f;
     private float spawnUnitsCountAux;
     [SerializeField] private Transform spawnPointHierarchy;
+    [SerializeField] private Transform spawnPowerUpPointHierarchy;
+    
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
+    [SerializeField] private List<Transform> spawnPowerUpPoints = new List<Transform>();
 
     [SerializeField] private GameObject player;
     //Find it with Tag "Score"
@@ -43,6 +46,14 @@ public class GameManager : MonoBehaviour , IPool
             foreach (Transform spawnP in spawnPointHierarchy.transform)
             {
                 spawnPoints.Add(spawnP);
+            }
+        }
+
+        if (spawnPowerUpPointHierarchy != null)
+        {
+            foreach (Transform p in spawnPowerUpPointHierarchy.transform)
+            {
+                spawnPowerUpPoints.Add(p);
             }
         }
         
@@ -87,11 +98,13 @@ public class GameManager : MonoBehaviour , IPool
             {
                 gameStates = GameStates.SPAWNING;
                 StartCoroutine(CreateUnits(Random.Range(0.5f, 2.1f)));
+                StartCoroutine(CreateLifeBatUnits(Random.Range(2f, 3f)));
                 spawnUnitsCountDown = spawnUnitsCountAux;
             }
         }
     }
     
+    //Create the Enemies
     IEnumerator CreateUnits(float delay)
     {
         if (gameStates == GameStates.SPAWNING)
@@ -100,7 +113,8 @@ public class GameManager : MonoBehaviour , IPool
             {
                 GameObject obj = Pooling.Instance.SpawnFromPool("Enemies",
                     spawnPoints[Random.Range(0, spawnPoints.Count - 1)].position, Quaternion.identity);
-
+                obj.GetComponent<EnemyMovement>().steerAmp = Random.Range(.31f, 1f);
+                
                 yield return new WaitForSeconds(delay);
             }
 
@@ -108,7 +122,25 @@ public class GameManager : MonoBehaviour , IPool
         }
 
     }
+    //Creates the LifeBats
+    IEnumerator CreateLifeBatUnits(float delay)
+    {
+        if (gameStates == GameStates.SPAWNING)
+        {
+            for (int i = 0; i < spawnPowerUpPoints.Count; i++)
+            {
+                GameObject obj = Pooling.Instance.SpawnFromPool("LifeBat",
+                    spawnPowerUpPoints[Random.Range(0, spawnPowerUpPoints.Count - 1)].position, Quaternion.identity);
 
+                yield return new WaitForSeconds(delay);
+            }
+        }
+        else
+        {
+            yield break;
+        }
+
+    }
     public void OnSpawnedObject()
     {
         
@@ -116,8 +148,10 @@ public class GameManager : MonoBehaviour , IPool
 
     public static IEnumerator EndGame(float delay)
     {
+       
         yield return new WaitForSeconds(delay);
         gameOverBoxRef.SetActive(true);
+        
     }
     
     #region Pause Menu Options

@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
     
     private Movement2D enemyMovement;
 
-    [SerializeField] private float steerAmp = .31f;
+    public float steerAmp = .31f;
     private void Start()
     {
         enemyMovement = GetComponent<Movement2D>();
