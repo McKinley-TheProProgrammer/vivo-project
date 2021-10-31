@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 606126192}
   - component: {fileID: 606126194}
   - component: {fileID: 606126193}
+  - component: {fileID: 606126195}
   m_Layer: 5
   m_Name: TitleCard
   m_TagString: Untagged
@@ -648,6 +649,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606126191}
   m_CullTransparentMesh: 1
+--- !u!95 &606126195
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606126191}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6710e041d6ba91846a5c7affdb23da66, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &786923350
 GameObject:
   m_ObjectHideFlags: 3
@@ -1424,6 +1444,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4724844548404050676, guid: 32890fabc7aa17b478b7ab179d4e4eef, type: 3}
+      propertyPath: sounds.Array.data[0].playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4724844548404050677, guid: 32890fabc7aa17b478b7ab179d4e4eef, type: 3}
       propertyPath: m_Name
       value: AudioManager
