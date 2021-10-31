@@ -43,6 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0c4795f884a1647b31f9610dd197dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - tagClip: MainTheme
+    track: {fileID: 8300000, guid: d52064e8ca8b10b4db1dd04d4c019add, type: 3}
+    volume: 1
+    pitch: 0.8
+    stereoPan: 0
+    loop: 1
+    playOnAwake: 0
+  - tagClip: ShootSFX
+    track: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
+    volume: 0.784
+    pitch: 1
+    stereoPan: 0
+    loop: 0
+    playOnAwake: 0
   audioMixer: {fileID: 24100000, guid: e487bbfc501d64346a07a3d45467ad05, type: 2}
   mainAudioMixerGroup: {fileID: 24300002, guid: e487bbfc501d64346a07a3d45467ad05, type: 2}
