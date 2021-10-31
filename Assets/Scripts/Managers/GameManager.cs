@@ -4,13 +4,23 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
+public enum GameStates
+{
+    START_GAME,
+    SPAWNING,
+    WAITING,
+    END_GAME
+}
 public class GameManager : MonoBehaviour , IPool
 {
+    [SerializeField] private GameStates gameStates;
     [SerializeField] private GameObject pauseBox, gameOverBox;
 
     private static GameObject gameOverBoxRef;
-    [SerializeField] private float spawnUnitsCountDown;
+    [SerializeField] private float spawnUnitsCountDown = 5f;
+    private float spawnUnitsCountAux;
     [SerializeField] private Transform spawnPointHierarchy;
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
 
@@ -20,6 +30,7 @@ public class GameManager : MonoBehaviour , IPool
     private static float scoreMultiply;
     private void Awake()
     {
+        spawnUnitsCountAux = spawnUnitsCountDown;
         if (spawnPointHierarchy != null)
         {
             foreach (Transform spawnP in spawnPointHierarchy.transform)
@@ -29,22 +40,62 @@ public class GameManager : MonoBehaviour , IPool
         }
 
         gameOverBoxRef = gameOverBox;
+
+        gameStates = GameStates.START_GAME;
     }
 
+    public TextMeshProUGUI initializeCountDownText;
+    private float initializeCountDown = 3f; 
+    void CountdownToInitializeGame()
+    {
+        if (gameStates == GameStates.START_GAME)
+        {
+            initializeCountDown -= Time.deltaTime;
+            int d = (int)initializeCountDown;
+            initializeCountDownText.text = d.ToString();
+            
+            if (initializeCountDown <= 0)
+            {
+                //StartCoroutine(CreateUnits(Random.Range(0.5f, 2.1f)));
+                initializeCountDown = 0;
+                initializeCountDownText.gameObject.SetActive(false);
+                
+                gameStates = GameStates.WAITING;
+            }
+        }
+        
+        
+    }
+    
     void SpawnUnitsCountDown()
     {
-        
+        if (gameStates == GameStates.WAITING)
+        {
+            spawnUnitsCountDown -= Time.deltaTime;
+            if (spawnUnitsCountDown <= 0)
+            {
+                gameStates = GameStates.SPAWNING;
+                StartCoroutine(CreateUnits(Random.Range(0.5f, 2.1f)));
+                spawnUnitsCountDown = spawnUnitsCountAux;
+            }
+        }
     }
     
     IEnumerator CreateUnits(float delay)
     {
-        for (int i = 0; i < spawnPoints.Count; i++)
+        if (gameStates == GameStates.SPAWNING)
         {
-            GameObject obj = Pooling.Instance.SpawnFromPool("Enemies", spawnPoints[Random.Range(0,spawnPoints.Count - 1)].position, Quaternion.identity);
+            for (int i = 0; i < spawnPoints.Count; i++)
+            {
+                GameObject obj = Pooling.Instance.SpawnFromPool("Enemies",
+                    spawnPoints[Random.Range(0, spawnPoints.Count - 1)].position, Quaternion.identity);
 
-            yield return new WaitForSeconds(delay);
+                yield return new WaitForSeconds(delay);
+            }
+
+            gameStates = GameStates.WAITING;
         }
-       
+
     }
 
     public void OnSpawnedObject()
@@ -106,6 +157,9 @@ public class GameManager : MonoBehaviour , IPool
     //public static IEnumerator GameOver
     private void Update()
     {
+        CountdownToInitializeGame();
+        SpawnUnitsCountDown();
+        
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
             Pause();
