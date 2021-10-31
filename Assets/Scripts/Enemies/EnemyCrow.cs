@@ -1,16 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCrow : MonoBehaviour
+public class EnemyCrow : EnemyBaseBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] private float radius = 1f;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    public override void DoAttack()
+    {
+        bool hittedSomthing = Physics2D.OverlapCircle(transform.position, radius);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerHP_Shoot>().SubstractHealthAmount(20);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerHP_Shoot>().SubstractHealthAmount(20);
+            gameObject.SetActive(false);
+        }
+    }
+
     void Update()
     {
         

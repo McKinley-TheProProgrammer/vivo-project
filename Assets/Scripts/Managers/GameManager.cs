@@ -16,6 +16,7 @@ public enum GameStates
 public class GameManager : MonoBehaviour , IPool
 {
     [SerializeField] private GameStates gameStates;
+    
     [SerializeField] private GameObject pauseBox, gameOverBox;
 
     private static GameObject gameOverBoxRef;
@@ -24,12 +25,18 @@ public class GameManager : MonoBehaviour , IPool
     [SerializeField] private Transform spawnPointHierarchy;
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
 
+    [SerializeField] private GameObject player;
     //Find it with Tag "Score"
-    public static GameObject scoreUI;
+    public GameObject scoreUI;
     
     private static float scoreMultiply;
+
+    private static GameManager instance;
+    public static GameManager Instance => instance;
     private void Awake()
     {
+        instance = this;
+        
         spawnUnitsCountAux = spawnUnitsCountDown;
         if (spawnPointHierarchy != null)
         {
@@ -38,14 +45,18 @@ public class GameManager : MonoBehaviour , IPool
                 spawnPoints.Add(spawnP);
             }
         }
-
+        
+        player = GameObject.FindWithTag("Player");
+        
         gameOverBoxRef = gameOverBox;
 
         gameStates = GameStates.START_GAME;
     }
 
     public TextMeshProUGUI initializeCountDownText;
+    
     private float initializeCountDown = 3f; 
+    
     void CountdownToInitializeGame()
     {
         if (gameStates == GameStates.START_GAME)
@@ -135,8 +146,8 @@ public class GameManager : MonoBehaviour , IPool
 
     public void UpdateScoreMultiply(float increment) => scoreMultiply += increment;
 
-    public static float result = 0;
-    public static IEnumerator Score(float points)
+    public float result = 0;
+    public IEnumerator Score(float points)
     {
 
         
@@ -160,11 +171,11 @@ public class GameManager : MonoBehaviour , IPool
         CountdownToInitializeGame();
         SpawnUnitsCountDown();
         
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && player != null)
         {
             Pause();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused && player != null)
         {
             UnPause();    
         }

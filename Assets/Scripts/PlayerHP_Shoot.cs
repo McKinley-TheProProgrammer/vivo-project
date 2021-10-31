@@ -11,6 +11,7 @@ public class PlayerHP_Shoot : MonoBehaviour
     //Health amount is the player health itself
     [SerializeField] private float healthAmount = 100, hpLossRatio = 5f;
     public float GetHealthAmount() => healthAmount;
+    public float SubstractHealthAmount(float healthAmount) => this.healthAmount -= healthAmount;
     
     private float hpMax;
     
@@ -121,8 +122,8 @@ public class PlayerHP_Shoot : MonoBehaviour
     }
 
     #endregion
-    
-    
+
+    private bool playerDead;
     void Update()
     {
         float tHp = Mathf.InverseLerp(0f, hpMax, healthAmount);
@@ -133,6 +134,13 @@ public class PlayerHP_Shoot : MonoBehaviour
         {
             ShootHPLoss();
             ShootBullets();
+        }
+        
+        if (healthAmount <= 0 && !playerDead)
+        {
+            StartCoroutine(PlayerDies(1));
+            playerDead = true;
+           
         }
 
         if (Input.GetKeyDown(KeyCode.F))

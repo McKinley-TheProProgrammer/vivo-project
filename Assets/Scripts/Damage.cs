@@ -19,25 +19,42 @@ public class Damage : MonoBehaviour
     {
         hpAux = myHp;
     }
-
+    
     public int TakeDamage(int dmgAmount)
     {
         int hpLoss = myHp -= dmgAmount;
         if (hpLoss <= 0)
         {
-            gameObject.SetActive(false);
             myHp = hpAux;
             switch (this.gameObject.tag)
             {
                 case "Enemy":
                     ScoreSystem.Instance.MultiplyScore(200);
                     break;
+                case "Player":
+                    
+                    CacheDeath();
+                    StartCoroutine(PlayerDies());
+                    break;
             }
+            gameObject.SetActive(false);
             
         }
         return hpLoss;
     }
 
+    void CacheDeath()
+    {
+        GetComponent<Movement2D>().GetRigidBody2D().gravityScale = 2f;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
+    }
+    IEnumerator PlayerDies()
+    {
+        CacheDeath();
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(GameManager.EndGame(1f));
+    }
     public void TakeDamage(int whatTakesDamage, int dmgAmount)
     {
         whatTakesDamage -= dmgAmount;

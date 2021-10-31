@@ -336,7 +336,10 @@ MonoBehaviour:
   spawnUnitsCountDown: 2
   spawnPointHierarchy: {fileID: 204131524}
   spawnPoints: []
+  player: {fileID: 0}
+  scoreUI: {fileID: 852823515}
   initializeCountDownText: {fileID: 1372084021}
+  result: 0
 --- !u!1 &162576270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2736,6 +2739,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: LoadLevelScene
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 159156031}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: UnPause
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

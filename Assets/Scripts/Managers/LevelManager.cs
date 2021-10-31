@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void LoadLevelScene(int buildIndex) => StartCoroutine(LoadScene(buildIndex));
+    public void LoadLevelScene_NoTransition(int buildIndex) => StartCoroutine(LoadSceneNoTrans(buildIndex));
     
     public void LoadLevelScene(string sceneName) => StartCoroutine(LoadScene(sceneName));
    
@@ -34,6 +35,19 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
     }
+    
+    IEnumerator LoadSceneNoTrans(int buildIndex)
+    {
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(buildIndex);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            yield return null;
+        }
+    }
+    
     
     IEnumerator LoadScene(string sceneName)
     {
