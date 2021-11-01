@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum MovementTypes
 {
@@ -16,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
     
     private Movement2D enemyMovement;
 
-    [SerializeField] private float steerAmp = .31f;
+    public float steerAmp = .31f;
     private void Start()
     {
         enemyMovement = GetComponent<Movement2D>();
@@ -24,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Sine_Movement()
     {
-        enemyMovement.Move(new Vector2(Mathf.Sin(Time.time + steerAmp), -1), false);
+        enemyMovement.Move(new Vector2(Mathf.Sin(Time.time + Random.Range(0f, steerAmp)), -1), false);
     }
 
     void Normal_Movement()

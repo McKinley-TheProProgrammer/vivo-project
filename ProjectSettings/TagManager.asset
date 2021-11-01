@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - PauseUI
+  - GameOverUI
+  - TransitionCanvas
+  - LifeBat
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - Water
   - UI
   - Bullets
-  - 
-  - 
+  - Enemies
+  - LifeBats
   - 
   - 
   - 
@@ -42,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: PowerUps
+    uniqueID: 1653881985
     locked: 0

@@ -54,10 +54,9 @@ public class OptionsManager : MonoBehaviour
     
     private float originalVol;
     public void SetVolume (float volume)
-    { 
-        if(!isMuted)
-            AudioManager.Instance.MainAudioMixer.SetFloat("MainVolume", volume);
-        originalVol = volume;
+    {
+        AudioManager.Instance.MainAudioMixer.SetFloat("MainVolume", volume);
+   
     }
 
     public void Mute()
