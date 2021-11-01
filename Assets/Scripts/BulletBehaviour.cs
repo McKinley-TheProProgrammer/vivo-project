@@ -41,6 +41,7 @@ public class BulletBehaviour : MonoBehaviour, IHit
     public void OnHit()
     {
         Bullet_NormalDMG();
+        AudioManager.Instance.Play("BulletHit");
     }
     private void FixedUpdate()
     {

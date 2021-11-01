@@ -53,7 +53,14 @@ MonoBehaviour:
     playOnAwake: 0
   - tagClip: ShootSFX
     track: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
-    volume: 0.784
+    volume: 1
+    pitch: 1
+    stereoPan: 0
+    loop: 0
+    playOnAwake: 0
+  - tagClip: BulletHit
+    track: {fileID: 8300000, guid: a2748dcdec6f9d64495a29610c59229f, type: 3}
+    volume: 0.808
     pitch: 1
     stereoPan: 0
     loop: 0

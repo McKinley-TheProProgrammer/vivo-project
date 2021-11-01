@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         animTransition = GameObject.FindWithTag("TransitionCanvas").GetComponent<Animator>();
+        AudioManager.Instance.Play("MainTheme");
     }
 
     public void LoadLevelScene(int buildIndex) => StartCoroutine(LoadScene(buildIndex));
