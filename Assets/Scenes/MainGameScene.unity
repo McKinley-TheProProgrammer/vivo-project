@@ -2116,7 +2116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564689315}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.081959, y: 11.700001, z: 8.219389}
+  m_LocalPosition: {x: 20.081959, y: 18.500004, z: 8.219389}
   m_LocalScale: {x: 1.6352, y: 1.6352, z: 1.6352}
   m_Children:
   - {fileID: 633608138}
@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 1.61
-  resetDistance: 20
+  resetDistance: 15
   scrollDir: {x: 0, y: -2}
 --- !u!1001 &566214807
 PrefabInstance:
@@ -2731,7 +2731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 1.61
-  resetDistance: 20
+  resetDistance: 15
   scrollDir: {x: 0, y: -2}
 --- !u!212 &797927485
 SpriteRenderer:
@@ -2792,7 +2792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797927483}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.081959, y: -35.3, z: 8.219389}
+  m_LocalPosition: {x: 20.081959, y: -28.5, z: 8.219389}
   m_LocalScale: {x: 1.6352, y: 1.6352, z: 1.6352}
   m_Children:
   - {fileID: 1736520912}
@@ -5403,14 +5403,14 @@ MonoBehaviour:
   m_FillRect: {fileID: 1823491138}
   m_HandleRect: {fileID: 1177374981}
   m_Direction: 0
-  m_MinValue: -20
+  m_MinValue: -29
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 931782554}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: SetVolume
         m_Mode: 0
@@ -6930,7 +6930,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2041058474}
-  - component: {fileID: 2041058475}
   m_Layer: 5
   m_Name: PauseBox
   m_TagString: PauseUI
@@ -6959,19 +6958,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -1820, y: -980}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2041058475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041058473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed5c383df2ebfae4098ea4abe07bc0d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resolutionDropdown: {fileID: 0}
 --- !u!1 &2128801446
 GameObject:
   m_ObjectHideFlags: 0
