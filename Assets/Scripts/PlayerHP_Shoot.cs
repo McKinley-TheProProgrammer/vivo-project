@@ -70,7 +70,7 @@ public class PlayerHP_Shoot : MonoBehaviour
         fireRate -= Time.deltaTime;
         if (fireRate <= 0 && healthAmount != 0)
         {
-            GameObject obj = Pooling.Instance.SpawnFromPool("BloodAmmo", transform.position, Quaternion.identity);
+            GameObject obj = Pooling.Instance.SpawnFromPool("BloodAmmo", bitePoint.position, Quaternion.identity);
             fireRate = fireAux;
             //print(playerDmg.MyHp);
             AudioManager.Instance.Play("ShootSFX");

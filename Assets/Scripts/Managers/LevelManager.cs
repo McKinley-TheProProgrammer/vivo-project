@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -52,7 +53,11 @@ public class LevelManager : MonoBehaviour
     {
         StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex));
     }
-    
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     IEnumerator LoadScene(string sceneName)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
