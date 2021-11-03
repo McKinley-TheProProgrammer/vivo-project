@@ -30,7 +30,10 @@ public class Damage : MonoBehaviour
             {
                 case "Enemy":
                     ScoreSystem.Instance.MultiplyScore((int)playerScore);
-                    //StartCoroutine(GameManager.Instance.Score(playerScore));
+                    SpriteRenderer enemySprite = GetComponent<SpriteRenderer>();
+                    enemySprite.color = Color.white;
+
+                    GameObject enemyVFX = Pooling.Instance.SpawnFromPool("EnemyDeathVFX", transform.position, transform.rotation);
                     break;
                 case "Player":
                     

@@ -13,7 +13,7 @@ public enum GameStates
     WAITING,
     END_GAME
 }
-public class GameManager : MonoBehaviour , IPool
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameStates gameStates;
     
@@ -141,10 +141,7 @@ public class GameManager : MonoBehaviour , IPool
         }
 
     }
-    public void OnSpawnedObject()
-    {
-        
-    }
+   
 
     public static IEnumerator EndGame(float delay)
     {

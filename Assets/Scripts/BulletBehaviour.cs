@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Movement2D))]
@@ -35,6 +36,7 @@ public class BulletBehaviour : MonoBehaviour, IHit
         {
             other.GetComponent<Damage>().TakeDamage(bulletDmgAmount);
             OnHit();
+            
         }
     }
 
@@ -43,6 +45,9 @@ public class BulletBehaviour : MonoBehaviour, IHit
         Bullet_NormalDMG();
         AudioManager.Instance.Play("BulletHit");
     }
+
+   
+    
     private void FixedUpdate()
     {
         BulletMovement();

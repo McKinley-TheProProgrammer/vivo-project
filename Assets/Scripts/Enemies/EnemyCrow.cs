@@ -3,16 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCrow : EnemyBaseBehaviour
+public class EnemyCrow : EnemyBaseBehaviour , IPool
 {
 
     [SerializeField] private float radius = 1f;
     
     //[SerializeField] private LayerMask playerLayer;
     private GameObject player;
-    void Start()
+    
+    
+    void Awake()
     {
         player = GameObject.FindWithTag("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        enemyDamage = GetComponent<Damage>();
     }
 
     public override void DoAttack()
@@ -35,10 +39,16 @@ public class EnemyCrow : EnemyBaseBehaviour
             other.gameObject.GetComponent<PlayerHP_Shoot>().SubstractHealthAmount(20);
             gameObject.SetActive(false);
         }
+
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            StartCoroutine(FlashHit(spriteRenderer, .08f));
+        }
     }
 
-    void Update()
+    public void OnSpawnedObject()
     {
-        
+        print("Entered");
+        spriteRenderer.color = Color.white;
     }
 }

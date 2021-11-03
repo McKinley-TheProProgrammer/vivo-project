@@ -4401,6 +4401,9 @@ MonoBehaviour:
   - objTag: LifeBatVFX
     prefab: {fileID: 8708773775605757054, guid: 4d74b481f93e4d14783cfbceac76bc68, type: 3}
     size: 5
+  - objTag: EnemyDeathVFX
+    prefab: {fileID: 1919744679743442147, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+    size: 8
   dataStructureType: 2
 --- !u!1001 &1323753156
 PrefabInstance:
@@ -6878,6 +6881,67 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 385991140425873232, guid: 62d259212c7826548835e6cfb190d984, type: 3}
   m_PrefabInstance: {fileID: 385991141631730604}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1919744678380850104
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1919744679743442147, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_Name
+      value: EnemyDyingVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442147, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919744679743442150, guid: dcf244198603b20449da242f5aeae43e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dcf244198603b20449da242f5aeae43e, type: 3}
 --- !u!1001 &1987311931912755060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7002,6 +7066,10 @@ PrefabInstance:
       propertyPath: heathBar
       value: 
       objectReference: {fileID: 1817106915}
+    - target: {fileID: 2311002213924455479, guid: dbf75d10baccd5b48b0b0ee0bfb2154a, type: 3}
+      propertyPath: hpLossRatio
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2311002213924455479, guid: dbf75d10baccd5b48b0b0ee0bfb2154a, type: 3}
       propertyPath: deathCountdownText
       value: 
